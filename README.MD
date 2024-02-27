@@ -10,23 +10,77 @@ El microcontrolador que utilizaremos es el ya comentado en la introducción  **E
 ## TASQUES I PREGUNTES 
 
 1. Generar el programa  y subir el codigo  al github de cada uno
+
+**Aquest es el codi complert amb l'apartat extra**
 ```cpp
    #include <Arduino.h>
-   int led = 13;
+int pin_DAC=25;
+int pin_ADC=34;
+int LED=13;
 
-   // the setup routine runs once when you press reset:
-   void setup() {                
-   // initialize the digital pin as an output.
-   pinMode(led, OUTPUT);     
-   }
+void led(){
+  for(int i=0;i<10;i++){
+    digitalWrite(LED,HIGH);
+    Serial.println("ON");
+    delay(500);
+    digitalWrite(LED,LOW);
+    Serial.println("OFF");
+    delay(500);
+  }
+}
 
-   // the loop routine runs over and over again forever:
-   void loop() {
-   digitalWrite(led, HIGH);   // turn the LED on (HIGH is the voltage level)
-   delay(1000);               // wait for a second
-   digitalWrite(led, LOW);    // turn the LED off by making the voltage LOW
-   delay(2000);               // wait for a second
-   }   
+void adc_dac(){
+  int valor=0;
+  for (int cont= 0; cont < 256; cont++){
+    dacWrite(pin_DAC, cont);
+    delay(50);
+    valor = analogRead(pin_ADC);
+    valor = map(valor, 0, 4096, 0, 255);
+    Serial.println("VALOR:");
+    Serial.println(valor);
+    delay(100);
+  }
+}
+
+void opcions(){
+    Serial.println("Opcions");
+    Serial.println("1. LED");
+    Serial.println("2. ADC");
+}
+
+void menu(){
+  char entrada;
+  int b=0;
+  if(b==0){
+    opcions();
+    entrada=Serial.read();
+    }
+  if(entrada=='1'){
+    b=1;
+    led();
+    opcions();
+    entrada=Serial.read();
+  }
+  else if(entrada=='2'){
+    b=1;
+    adc_dac();
+    opcions();
+    entrada=Serial.read();
+  }
+}
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(LED,OUTPUT);
+  analogReadResolution(12);
+}
+
+void loop() {
+  delay(100);
+  if (Serial.available()){
+    menu();
+  }
+}   
 ```
 
 2. Modificar el programa para que incluya el envio de datos (ON y OFF) al puerto serie.
@@ -183,9 +237,11 @@ En aquest cas es de **212ns o 4.717MHZ**
 
 6. Responder a la siguiente pregunta en el programa que se ha realizado cual es el tiempo libre que tiene el procesador ?
 
-# Coclusions
+El temps lliure del processador es el temps en que el processador no està fent res perque per exemple hi hem posat un delay, en el primer programa que hem fet era de 1000ms (1s)
 
-En aquesta primera pràctica hem vist com 
+# Conclusions
+
+En aquesta primera pràctica hem vist com funciona un arduino i ens hem familiaritzat amb ell
 
 # EJERCICIOS voluntarios  DE MEJORA DE NOTA
 
