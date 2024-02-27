@@ -180,6 +180,8 @@ Elejir entre cualquiera de los siguentes:
   - https://randomnerdtutorials.com/esp32-adc-analog-read-arduino-ide/
 
 **Aquest es el codi complert amb l'apartat extra**
+En aquest codi hem combinat els dos codis amb un menú per a poder triar que volem fer i els loops dels programes ja no son infinits sino que per a poder canviar de menu hem decidit limitar-los
+
 ```cpp
    #include <Arduino.h>
 int pin_DAC=25;
