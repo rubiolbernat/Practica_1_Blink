@@ -252,3 +252,45 @@ void loop() {
   }
 }   
 ```
+
+```mermaid
+---
+displayMode: compact
+---
+gantt
+title Linea de temps
+   dateFormat X
+   axisFormat %s
+
+   section Clock
+      1 : 0, 1
+      0 : 1, 2
+      1 : 2, 3
+      0 : 3, 4
+      1 : 4, 5
+      0 : 5, 6
+      1 : 6, 7
+      0 : 7, 8
+      1 : 8, 9
+      0 : 9, 10
+      1 : 10, 11
+      0 : 11, 12
+      1 : 12, 13
+      0 : 13, 14
+      1 : 14, 15
+      0 : 15, 16
+      1 : 16, 17
+      0 : 17, 18
+      1 : 18, 19
+      0 : 19, 20
+
+    section LEDS
+    Open  :1, 2
+
+    section LEDS
+    "ON"  : 1, 2
+
+    section ADC
+    Read  :crit, 0, 1
+    Write  :active, 1, 2
+```
