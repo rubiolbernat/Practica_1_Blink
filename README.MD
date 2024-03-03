@@ -1,5 +1,6 @@
 # PRACTICA 1  :  BLINK
-Alumnes: **Bernat Rubiol i Àfrica Abad**
+Alumne: **Bernat Rubiol**
+Companya de laboratori: **Àfrica Abad**
 
 ## Objectiu
 El objeticvo de la practica es producir el parpadeo periodico de un led. 
@@ -149,6 +150,8 @@ En aquest cas es de **212ns o 4.717MHZ**
 
 ### Diagrama de temps
 
+>He fet dos diagrames de temps, un del codi principal i l'altre del modificat amb el acdc i més complert
+
 ```mermaid
    sequenceDiagram
    participant A as Programa
@@ -162,6 +165,62 @@ En aquest cas es de **212ns o 4.717MHZ**
       end
 ```
 
+```mermaid
+---
+displayMode: compact
+---
+gantt
+title Linea de temps
+   dateFormat X
+   axisFormat %s
+
+   section Comentari
+      Si seleccionem opcio leds fa 10 iteracions :milestone, 0,0
+      Si seleccionem opcio ADC fa 255 iteracions :milestone, 9,10
+
+   section Iteracions
+      1 : 0, 1 
+      2 : 1, 2
+      3 : 2, 3
+      4 : 3, 4
+      ... : 4, 5
+      10 : 5, 6
+      
+      
+      1 : 9, 10
+      2 : 10, 11
+      3 : 11, 12
+      4 : 12, 13
+      ... : 13, 14
+      255 : 14, 15
+
+    section LEDS
+    Open  :0, 1
+    Open  :2, 3
+
+    Close  :1, 2
+    Close  :3, 4
+    Close  :5, 6
+
+    section LEDS
+    "ON"  : 0, 1
+    "ON"  : 2, 3
+
+    "OFF"  : 1, 2
+    "OFF"  : 3, 4
+    "OFF"  : 5, 6
+
+    Aquesta opcio obre i apaga els leds i mostra un missatge al serial :6,6
+    
+
+    section ADC
+    Aquesta llegeix el valor Ac i el treu treu per un port :2,2
+    Read  :crit, 9, 10
+    Write  :active, 10, 11
+    Read  :crit, 11, 12
+    Write  :active, 12, 13
+    Write  :active, 14, 15
+```
 
 6. Responder a la siguiente pregunta en el programa que se ha realizado cual es el tiempo libre que tiene el procesador ?
 
@@ -169,7 +228,7 @@ El temps lliure del processador es el temps en que el processador no està fent 
 
 # Conclusions
 
-En aquesta primera pràctica hem vist com funciona un arduino i ens hem familiaritzat amb ell
+En aquesta primera pràctica hem vist com funciona un arduino i ens hem familiaritzat amb ell, aprenent com podem fer que aquest vagi més ràpid o lent treballant directament amb els registres, també a utilitzar programes ja creats i integrar-los en els nostres projectes
 
 # EJERCICIOS voluntarios  DE MEJORA DE NOTA
 
@@ -251,46 +310,4 @@ void loop() {
     menu();
   }
 }   
-```
-
-```mermaid
----
-displayMode: compact
----
-gantt
-title Linea de temps
-   dateFormat X
-   axisFormat %s
-
-   section Clock
-      1 : 0, 1
-      0 : 1, 2
-      1 : 2, 3
-      0 : 3, 4
-      1 : 4, 5
-      0 : 5, 6
-      1 : 6, 7
-      0 : 7, 8
-      1 : 8, 9
-      0 : 9, 10
-      1 : 10, 11
-      0 : 11, 12
-      1 : 12, 13
-      0 : 13, 14
-      1 : 14, 15
-      0 : 15, 16
-      1 : 16, 17
-      0 : 17, 18
-      1 : 18, 19
-      0 : 19, 20
-
-    section LEDS
-    Open  :1, 2
-
-    section LEDS
-    "ON"  : 1, 2
-
-    section ADC
-    Read  :crit, 0, 1
-    Write  :active, 1, 2
 ```
