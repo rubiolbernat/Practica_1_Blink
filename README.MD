@@ -137,6 +137,11 @@ En aquest cas es de **212ns o 4.717MHZ**
 5. Generar un informe fichero  informe.MD ( markdown ) donde se muestre el codigo, un diagrama de flujo y un diagrama de tiempos 
 
 ### Diagrama de flux
+```
+wavedrom (
+    { signal: [{ name: "Alfa", wave: "01.zx=ud.23.456789" }] }
+`
+)```
 
 ```mermaid 
    graph TD
